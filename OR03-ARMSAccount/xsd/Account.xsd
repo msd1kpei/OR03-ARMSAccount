@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kpei.co.id/razor/Account" elementFormDefault="qualified" xmlns="http://www.kpei.co.id/razor/Account">
+   <xs:element name="kpeiInbound">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="header" type="kpeiHeader"/>
+            <xs:element name="body">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element ref="content"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:complexType name="kpeiHeader">
+      <xs:sequence>
+         <xs:element name="asAt" type="xs:dateTime">
+            <xs:annotation>
+               <xs:documentation>timestamp of the message</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="sourceSystem">
+            <xs:annotation>
+               <xs:documentation>originating system that produced the message</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="100"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="required">
+         <xs:annotation>
+            <xs:documentation>id of the message</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:element name="schema">
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="RiskPointStructure"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+   <xs:element name="riskPointDomains">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="riskPointDomain"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="riskPointDomain">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="record">
+               <xs:annotation>
+                  <xs:documentation>riskPointDomain Record</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="id" use="required">
+            <xs:annotation>
+               <xs:documentation>identifiier of the riskPointDomain</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="Account"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="record">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="fields"/>
+         </xs:sequence>
+         <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>identifier of the record</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="fields">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="field">
+               <xs:annotation>
+                  <xs:documentation>value of the field</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="field">
+      <xs:complexType>
+         <xs:simpleContent>
+            <xs:extension base="xs:string">
+               <xs:attribute name="id" type="xs:string" use="required">
+                  <xs:annotation>
+                     <xs:documentation>identifier of the field</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:simpleContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="content">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="riskPointDomains"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

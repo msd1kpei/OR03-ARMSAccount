@@ -1,0 +1,192 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Fri Apr 23 12:33:45 ICT 2010
+  Author:  Administrator
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="AccountToARMS"
+               targetNamespace="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+               xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+               xmlns:client="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xpath20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/OR03-ARMSAccount/OR03-ARMSAccount/Account_ARMS"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/OR03-ARMSAccount/OR03-ARMSAccount/ARMS_Account"
+         xmlns:ns8="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ns3="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:ns6="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns5="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:ns7="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:ns4="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns9="http://kpei.co.id/MDwsReply.xsd"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns10="http://www.kpei.co.id/middleware"
+         xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/ARMS-Account"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns12="http://xmlns.oracle.com/ARIS_KPEI_PROJECT_jws/Transform/Transformation"
+         xmlns:mhdr="http://www.oracle.com/XSL/Transform/java/oracle.tip.mediator.service.common.functions.MediatorExtnFunction"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:med="http://schemas.oracle.com/mediator/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:socket="http://www.oracle.com/XSL/Transform/java/oracle.tip.adapter.socket.ProtocolTranslator"
+         xmlns:ns13="http://www.kpei.co.id/Transformation"
+         xmlns:ns14="http://xmlns.oracle.com/pcbpel/adapter/db/ARIS-KPEI-PROJECT/OR03-ARMSAccount/ARMSAccountDB">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="accounttoarms_client" partnerLinkType="client:AccountToARMS" myRole="AccountToARMSProvider"/>
+    <partnerLink name="ARMSAccountDB" partnerRole="ARMSAccountDB_role"
+                 partnerLinkType="ns14:ARMSAccountDB_plt"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:AccountToARMSRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:AccountToARMSResponseMessage"/>
+    <variable name="Counter" type="xsd:integer"/>
+    <variable name="totaleCLEARSAccount" type="xsd:integer"/>
+    <variable name="invalidVar" messageType="bpelx:RuntimeFaultMessage"/>
+    <variable name="replyErrorValidation_process_OutputVariable"
+              messageType="client:AccountToARMSResponseMessage"/>
+    <variable name="Transformation1" element="ns13:Transformations"/>
+  </variables>
+  <faultHandlers>
+    <catch faultName="bpelx:invalidVariables" faultVariable="invalidVar">
+      <sequence>
+        <assign name="Assign_1">
+          <copy>
+            <from expression="xpath20:current-dateTime()"/>
+            <to variable="replyErrorValidation_process_OutputVariable"
+                part="payload" query="/ns9:wsReply/ns9:receiveDateTime"/>
+          </copy>
+          <copy>
+            <from expression="'ERROR'"/>
+            <to variable="replyErrorValidation_process_OutputVariable"
+                part="payload" query="/ns9:wsReply/ns9:status"/>
+          </copy>
+          <copy>
+            <from expression="string(bpws:getVariableData('invalidVar','summary'))"/>
+            <to variable="replyErrorValidation_process_OutputVariable"
+                part="payload" query="/ns9:wsReply/ns9:description"/>
+          </copy>
+        </assign>
+        <reply name="replyErrorValidation"
+               variable="replyErrorValidation_process_OutputVariable"
+               partnerLink="accounttoarms_client"
+               portType="client:AccountToARMS" operation="process"/>
+      </sequence>
+    </catch>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in AccountToARMS.wsdl) -->
+    <receive name="receiveInput" partnerLink="accounttoarms_client" portType="client:AccountToARMS" operation="process" variable="inputVariable" createInstance="yes"/>
+
+    <!-- Generate reply to synchronous request -->
+    <bpelx:validate name="inputValidation" variables="inputVariable"/>
+    <assign name="invokeTransformation">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:processXSLT('xsl/invokeTransformation.xsl',bpws:getVariableData('inputVariable','payload'))"/>
+        <to variable="inputVariable" part="payload"/>
+      </copy>
+    </assign>
+    <scope name="processing">
+      <variables>
+        <variable name="msg_eCLEARSAccount" element="ns10:e-CLEARSAccount"/>
+        <variable name="insertARMSAccount_merge_InputVariable"
+                  messageType="ns14:AccountCollection_msg"/>
+      </variables>
+      <faultHandlers>
+        <catchAll>
+          <sequence>
+            <assign name="AssignError">
+              <copy>
+                <from expression="xpath20:current-dateTime()"/>
+                <to variable="outputVariable" part="payload"
+                    query="/ns9:wsReply/ns9:receiveDateTime"/>
+              </copy>
+              <copy>
+                <from expression="'ERROR'"/>
+                <to variable="outputVariable" part="payload"
+                    query="/ns9:wsReply/ns9:status"/>
+              </copy>
+              <copy>
+                <from expression="concat('AccountToARMS BPEL ERROR melakukan insert. ERROR:',ora:getFaultAsString())"/>
+                <to variable="outputVariable" part="payload"
+                    query="/ns9:wsReply/ns9:description"/>
+              </copy>
+            </assign>
+          </sequence>
+        </catchAll>
+      </faultHandlers>
+      <sequence>
+        <assign name="transformARMSAccount">
+          <bpelx:annotation>
+            <bpelx:pattern>transformation</bpelx:pattern>
+          </bpelx:annotation>
+          <copy>
+            <from expression="ora:processXSLT('xsl/transformARMSAccount.xsl',bpws:getVariableData('inputVariable','payload'))"/>
+            <to variable="insertARMSAccount_merge_InputVariable"
+                part="AccountCollection"/>
+          </copy>
+        </assign>
+        <invoke name="insertARMSAccount"
+                inputVariable="insertARMSAccount_merge_InputVariable"
+                partnerLink="ARMSAccountDB" portType="ns14:ARMSAccountDB_ptt"
+                operation="merge"/>
+        <assign name="AssignSukses">
+          <copy>
+            <from expression="xpath20:current-dateTime()"/>
+            <to variable="outputVariable" part="payload"
+                query="/ns9:wsReply/ns9:receiveDateTime"/>
+          </copy>
+          <copy>
+            <from expression="'SUCCESS'"/>
+            <to variable="outputVariable" part="payload"
+                query="/ns9:wsReply/ns9:status"/>
+          </copy>
+          <copy>
+            <from expression="'AccountToARMS BPEL Sukses melakukan insert.'"/>
+            <to variable="outputVariable" part="payload"
+                query="/ns9:wsReply/ns9:description"/>
+          </copy>
+        </assign>
+      </sequence>
+    </scope>
+    <reply name="replyOutput" partnerLink="accounttoarms_client" portType="client:AccountToARMS" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

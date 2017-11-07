@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AccountToARMS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kpei.co.id/middleware file:/D:/00.%20PROJECTS/MWI/OR03-ARMSAccount/xsd/ARMSAccount-request.xsd" xmlns="http://www.kpei.co.id/middleware">
+   <header id="id1">
+      <asAt>2011-07-27T11:14:10.076</asAt>
+      <source>source2</source>
+   </header>
+   <body>
+      <e-CLEARSAccount>
+         <AccountID>AccountID3</AccountID>
+         <AccountType>AccountType4</AccountType>
+         <Description>Description5</Description>
+         <MemberID>MemberID6</MemberID>
+      </e-CLEARSAccount>
+      <e-CLEARSAccount>
+         <AccountID>AccountID7</AccountID>
+         <AccountType>AccountType8</AccountType>
+         <Description>Description9</Description>
+         <MemberID>MemberID10</MemberID>
+      </e-CLEARSAccount>
+      <e-CLEARSAccount>
+         <AccountID>AccountID11</AccountID>
+         <AccountType>AccountType12</AccountType>
+         <Description>Description13</Description>
+         <MemberID>MemberID14</MemberID>
+      </e-CLEARSAccount>
+   </body>
+   <ext>
+      <value id="id15">string16</value>
+      <value id="id17">string18</value>
+      <value id="id19">string20</value>
+   </ext>
+</AccountToARMS>

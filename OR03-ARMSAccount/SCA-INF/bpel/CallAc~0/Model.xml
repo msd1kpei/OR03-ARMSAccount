@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="CallAccountToARMS" targetNamespace="http://xmlns.oracle.com/ARIS_KPEI_PROJECT_jws/OR03_ARMSAccount/CallAccountToARMS" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/ARIS_KPEI_PROJECT_jws/OR03_ARMSAccount/CallAccountToARMS" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountToARMS_JMS" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns2="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountResponseQueue_JMS" id="BpPrc0">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="callaccounttoarms_client" partnerLinkType="ns1:Consume_Message_plt" myRole="Consume_Message_role"/>
+    <partnerLink name="AccountToARMS.accounttoarms_client" partnerRole="AccountToARMSProvider" partnerLinkType="ns2:AccountToARMS"/>
+    <partnerLink name="AccountResponseQueue-JMS" partnerRole="Produce_Message_role" partnerLinkType="ns3:Produce_Message_plt"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:Consume_Message_msg"/>
+    <variable name="invokeAccountToARMS_process_InputVariable" messageType="ns2:AccountToARMSRequestMessage"/>
+    <variable name="invokeAccountToARMS_process_OutputVariable" messageType="ns2:AccountToARMSResponseMessage"/>
+    <variable name="invokeAccountJMS_Produce_Message_InputVariable" messageType="ns3:Produce_Message_msg"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main" id="BpSeq0">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in CallAccountToARMS.wsdl) -->
+    <receive name="receiveInput" partnerLink="callaccounttoarms_client" portType="ns1:Consume_Message_ptt" operation="Consume_Message" variable="inputVariable" createInstance="yes" id="BpRcv0"/>
+    <assign name="transformAccount" id="BpAss0">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:processXSLT('xsl/transformAccount.xsl',bpws:getVariableData('inputVariable','body'))"/>
+        <to variable="invokeAccountToARMS_process_InputVariable" part="payload"/>
+      </copy>
+    </assign>
+    <invoke name="invokeAccountToARMS" inputVariable="invokeAccountToARMS_process_InputVariable" outputVariable="invokeAccountToARMS_process_OutputVariable" partnerLink="AccountToARMS.accounttoarms_client" portType="ns2:AccountToARMS" operation="process" id="BpInv0"/>
+    <assign name="transformReplyJMS" id="BpAss1">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:processXSLT('xsl/transformReplyJMS.xsl',bpws:getVariableData('invokeAccountToARMS_process_OutputVariable','payload'))"/>
+        <to variable="invokeAccountJMS_Produce_Message_InputVariable" part="body"/>
+      </copy>
+    </assign>
+    <invoke name="invokeAccountJMS" inputVariable="invokeAccountJMS_Produce_Message_InputVariable" partnerLink="AccountResponseQueue-JMS" portType="ns3:Produce_Message_ptt" operation="Produce_Message" id="BpInv1"/>
+  </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Aug 03 15:22:09 ICT 2011
+  Author:  DeddyNu
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->

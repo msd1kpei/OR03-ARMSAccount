@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<properties>
+   <entry key="dbo.account.MemberID:db_column_type">VARCHAR</entry>
+   <entry key="dbo.account.ID:db_column_not_null">true</entry>
+   <entry key="dbo.account.CreateBy:db_column_type">NCHAR</entry>
+   <entry key="dbo.account.Description:db_column_size">50</entry>
+   <entry key="dbo.account.MemberID:db_column_not_null">false</entry>
+   <entry key="dbo.account.AccountType:db_column_not_null">false</entry>
+   <entry key="dbo.account.AccountType:db_column_type">VARCHAR</entry>
+   <entry key="dbo.account.CreateDate:db_column_type">TIMESTAMP</entry>
+   <entry key="dbo.account.CreateDate:db_column_not_null">false</entry>
+   <entry key="dbo.account.MemberID:db_column_size">50</entry>
+   <entry key="dbo.account.AccountID:db_column_type">VARCHAR</entry>
+   <entry key="dbo.account.ID:db_column_type">numeric() identity</entry>
+   <entry key="dbo.account.CreateBy:db_column_size">10</entry>
+   <entry key="dbo.account.Description:db_column_not_null">false</entry>
+   <entry key="root_descriptor_alias">dbo.account</entry>
+   <entry key="dbo.account:db_column_6">Description</entry>
+   <entry key="dbo.account.Description:db_column_type">VARCHAR</entry>
+   <entry key="dbo.account:db_column_5">CreateBy</entry>
+   <entry key="dbo.account.AccountType:db_column_size">50</entry>
+   <entry key="dbo.account:db_column_4">CreateDate</entry>
+   <entry key="dbo.account:db_column_3">MemberID</entry>
+   <entry key="dbo.account:db_column_2">AccountType</entry>
+   <entry key="dbo.account.CreateBy:db_column_not_null">false</entry>
+   <entry key="dbo.account:db_table_type">TABLE</entry>
+   <entry key="dbo.account:db_column_1">AccountID</entry>
+   <entry key="dbo.account:db_column_0">ID</entry>
+   <entry key="dbo.account.AccountID:db_column_size">40</entry>
+   <entry key="dbo.account.AccountID:db_column_not_null">true</entry>
+</properties>

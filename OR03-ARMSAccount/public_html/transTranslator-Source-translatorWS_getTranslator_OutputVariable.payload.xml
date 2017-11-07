@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outTranslator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kpei.co.id/GE06-Translator http://albacoredev:8001/soa-infra/services/default/GE06-Translator/xsd/Translator-request.xsd" xmlns="http://www.kpei.co.id/GE06-Translator">
+   <rec>
+      <id>id15</id>
+      <serviceName>serviceName16</serviceName>
+      <source>source17</source>
+      <target>target18</target>
+   </rec>
+   <rec>
+      <id>id19</id>
+      <serviceName>serviceName20</serviceName>
+      <source>source21</source>
+      <target>target22</target>
+   </rec>
+   <rec>
+      <id>id23</id>
+      <serviceName>serviceName24</serviceName>
+      <source>source25</source>
+      <target>target26</target>
+   </rec>
+</outTranslator>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.oracle.com/bam" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fullPathName="/MiddlewareKPEI/OrchestrationState" name="_OrchestrationState" targetNamespace="http://xmlns.oracle.com/bam">
+   <types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/bam">
+         <annotation>
+            <documentation>
+               <info>/MiddlewareKPEI/OrchestrationState</info>
+            </documentation>
+         </annotation>
+         <element name="_OrchestrationStateCollection">
+            <complexType>
+               <sequence>
+                  <element maxOccurs="unbounded" minOccurs="0" name="_OrchestrationState" type="tns:_OrchestrationState"/>
+               </sequence>
+            </complexType>
+         </element>
+         <element name="Response">
+            <complexType>
+               <sequence>
+                  <element name="result" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="_OrchestrationState">
+            <sequence>
+               <element minOccurs="0" name="_messageName">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">messageName</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">string</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+                  <simpleType>
+                     <restriction base="xsd:string">
+                        <maxLength value="100"/>
+                     </restriction>
+                  </simpleType>
+               </element>
+               <element minOccurs="0" name="_compositeInstanceId">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">compositeInstanceId</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">string</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+                  <simpleType>
+                     <restriction base="xsd:string">
+                        <maxLength value="100"/>
+                     </restriction>
+                  </simpleType>
+               </element>
+               <element minOccurs="0" name="_componentName">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">componentName</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">string</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+                  <simpleType>
+                     <restriction base="xsd:string">
+                        <maxLength value="100"/>
+                     </restriction>
+                  </simpleType>
+               </element>
+               <element minOccurs="1" name="_startTime" type="xsd:dateTime">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">receiveInputTime</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">datetime</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+               </element>
+               <element minOccurs="0" name="_state">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">processState</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">string</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+                  <simpleType>
+                     <restriction base="xsd:string">
+                        <maxLength value="100"/>
+                     </restriction>
+                  </simpleType>
+               </element>
+               <element minOccurs="0" name="_currentStateTime" type="xsd:dateTime">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">currentStateTime</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">datetime</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+               </element>
+               <element minOccurs="0" name="_processingTime" type="xsd:integer">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">processingTime</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">integer</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+               </element>
+               <element minOccurs="0" name="_messageType">
+                  <annotation>
+                     <appinfo>
+                        <columnName xmlns="http://xmlns.oracle.com/bam">messageType</columnName>
+                        <columnType xmlns="http://xmlns.oracle.com/bam">string</columnType>
+                        <columnDescription xmlns="http://xmlns.oracle.com/bam"/>
+                     </appinfo>
+                  </annotation>
+                  <simpleType>
+                     <restriction base="xsd:string">
+                        <maxLength value="100"/>
+                     </restriction>
+                  </simpleType>
+               </element>
+            </sequence>
+         </complexType>
+      </schema>
+   </types>
+   <message name="_OrchestrationStateRequestMessage">
+      <part element="tns:_OrchestrationStateCollection" name="payload"/>
+   </message>
+   <message name="_OrchestrationStateResponseMessage">
+      <part element="tns:Response" name="payload"/>
+   </message>
+   <portType name="OrchestrationState">
+      <operation name="process">
+         <input message="tns:_OrchestrationStateRequestMessage"/>
+         <output message="tns:_OrchestrationStateResponseMessage"/>
+      </operation>
+   </portType>
+</definitions>

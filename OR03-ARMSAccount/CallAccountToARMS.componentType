@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+   <service name="callaccounttoarms_client" ui:wsdlLocation="AccountToARMS_JMS.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountToARMS_JMS#wsdl.interface(Consume_Message_ptt)"/>
+   </service>
+   <reference name="AccountToARMS.accounttoarms_client" ui:wsdlLocation="AccountToARMS.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS#wsdl.interface(AccountToARMS)"/>
+   </reference>
+   <reference name="AccountResponseQueue-JMS" ui:wsdlLocation="AccountResponseQueue_JMS.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountResponseQueue_JMS#wsdl.interface(Produce_Message_ptt)"/>
+   </reference>
+</componentType>

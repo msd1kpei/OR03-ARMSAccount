@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Transformations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kpei.co.id/Transformation file:/D:/00.%20PROJECTS/MWI/OR03-ARMSAccount/xsd/Transformation.xsd" xmlns="http://www.kpei.co.id/Transformation">
+   <transformation>
+      <result>result21</result>
+   </transformation>
+   <transformation>
+      <result>result22</result>
+   </transformation>
+   <transformation>
+      <result>result23</result>
+   </transformation>
+</Transformations>

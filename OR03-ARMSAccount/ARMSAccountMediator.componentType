@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+   <service name="ARMSAccountMediator" ui:wsdlLocation="OR03_ARMSAccount.wsdl">
+      <interface.wsdl interface="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount#wsdl.interface(execute_ptt)"/>
+   </service>
+   <reference name="ARMSAccountBPEL.armsaccountbpel_client" ui:wsdlLocation="OR03_ARMSAccountRef.wsdl">
+      <interface.wsdl interface="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount#wsdl.interface(execute_ptt)"/>
+   </reference>
+   <reference name="AccountToARMS.accounttoarms_client" ui:wsdlLocation="AccountToARMS.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS#wsdl.interface(AccountToARMS)"/>
+   </reference>
+</componentType>

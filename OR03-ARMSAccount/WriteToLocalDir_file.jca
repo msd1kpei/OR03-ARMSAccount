@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<adapter-config name="WriteToLocalDir" adapter="File Adapter" wsdlLocation="WriteToLocalDir.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+   <connection-factory location="eis/HAFileAdapter" adapterRef=""/>
+   <endpoint-interaction portType="Write_ptt" operation="Write">
+      <interaction-spec className="oracle.tip.adapter.file.outbound.FileInteractionSpec">
+         <property name="PhysicalDirectory" value="F:\Share\razor\gateway\inbound\reference\account\queue"/>
+         <property name="FileNamingConvention" value="yyyymmddhimizzz_account.xml"/>
+         <property name="Append" value="false"/>
+         <property name="NumberMessages" value="1"/>
+      </interaction-spec>
+   </endpoint-interaction>
+</adapter-config>
