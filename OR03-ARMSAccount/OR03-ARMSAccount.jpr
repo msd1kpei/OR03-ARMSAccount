@@ -3,14 +3,27 @@
    <url n="AccountToARMS_bpelFileURL" path="AccountToARMS.bpel"/>
    <value n="AccountToARMS_Namespace" v="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"/>
    <value n="AccountToARMS_ProcessName" v="AccountToARMS"/>
+   <value n="AccountToARMS_Template" v="BPEL_SYNC_PROCESS"/>
    <value n="AccountToARMS_wsdl" v="AccountToARMS.wsdl"/>
+   <url n="AccountToARMSBPEL_bpelFileURL" path="AccountToARMSBPEL.bpel"/>
+   <value n="AccountToARMSBPEL_Namespace" v="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMSBPEL"/>
+   <value n="AccountToARMSBPEL_ProcessName" v="AccountToARMSBPEL"/>
+   <value n="AccountToARMSBPEL_Template" v="BPEL_SYNC_PROCESS"/>
+   <value n="AccountToARMSBPEL_wsdl" v="AccountToARMSBPEL.wsdl"/>
    <url n="ARMSAccountBPEL_bpelFileURL" path="ARMSAccountBPEL.bpel"/>
    <value n="ARMSAccountBPEL_Namespace" v="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSAccountBPEL"/>
    <value n="ARMSAccountBPEL_ProcessName" v="ARMSAccountBPEL"/>
-   <value n="ARMSAccountBPEL_wsdl" v="OR03_ARMSAccountRef.wsdl"/>
+   <value n="ARMSAccountBPEL_Template" v="BPEL_BASE_ON_WSDL"/>
+   <value n="ARMSAccountBPEL_wsdl" v="OR03_ARMSAccount.wsdl"/>
+   <url n="ARMSToAccountBPEL_bpelFileURL" path="ARMSToAccountBPEL.bpel"/>
+   <value n="ARMSToAccountBPEL_Namespace" v="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSToAccountBPEL"/>
+   <value n="ARMSToAccountBPEL_ProcessName" v="ARMSToAccountBPEL"/>
+   <value n="ARMSToAccountBPEL_Template" v="BPEL_SYNC_PROCESS"/>
+   <value n="ARMSToAccountBPEL_wsdl" v="ARMSToAccountBPEL.wsdl"/>
    <url n="CallAccountToARMS_bpelFileURL" path="CallAccountToARMS.bpel"/>
    <value n="CallAccountToARMS_Namespace" v="http://xmlns.oracle.com/ARIS_KPEI_PROJECT_jws/OR03_ARMSAccount/CallAccountToARMS"/>
    <value n="CallAccountToARMS_ProcessName" v="CallAccountToARMS"/>
+   <value n="CallAccountToARMS_Template" v="BPEL_BASE_ON_WSDL"/>
    <value n="CallAccountToARMS_wsdl" v="AccountToARMS_JMS.wsdl"/>
    <hash n="component-versions">
       <value n="oracle.adfdt.controller.adfc.source.migration.AdfControllerSchemaMigrator" v="11.1.1.1.0"/>
@@ -55,8 +68,9 @@
       <value n="oracle.modeler.bmmigrate.management.Migration" v="11.1.1.1.0"/>
       <value n="oracle.tip.tools.ide.bpel.v1.designer.addin.migrator.BPELProjectMigrator" v="11.1.1.1.0"/>
       <value n="oracle.tip.tools.ide.fabric.addin.SCAProjectMigrator" v="11.1.1.1.0.06"/>
+      <value n="oracle.tip.tools.ide.pm.addin.migrator.PMProjectMigrator" v="11.1.1.1.0"/>
       <value n="oracle.tip.tools.ide.workflow.addin.TaskFormMigratorAddin" v="11.1.1.1.0"/>
-      <value n="oracle.tip.tools.ide.workflow.addin.WorkflowProjectMigrator" v="11.1.1.1.0.09"/>
+      <value n="oracle.tip.tools.ide.workflow.addin.WorkflowProjectMigrator" v="11.1.1.1.0.08;11.1.1.1.0.09"/>
       <value n="oracle.toplink.workbench.addin.migration.PersistenceProjectMigrator" v="11.1.1.1.1"/>
       <value n="oracle.toplink.workbench.addin.migration.TopLinkProjectMigrator" v="11.1.1.1.0"/>
    </hash>
@@ -65,14 +79,16 @@
       <string v="oracle.ide.model.ResourcePaths/resourcesContentSet"/>
       <string v="oracle.jdeveloper.offlinedb.model.OfflineDBProjectSettings/offlineDBContentSet"/>
       <string v="oracle.jdeveloper.model.J2eeSettings/webContentSet"/>
+      <string v="oracle.toplink.workbench.addin/toplinkContentSet"/>
       <string v="oracle.mds.internal.dt.ide.MDSLibraryCustCSProvider/mdsContentSet"/>
       <string v="oracle.bm.commonIde.data.project.ModelerProjectSettings/modelersContentSet"/>
-      <string v="oracle.tip.tools.ide.fabric.addin.SCAContentSetProvider/sca-content"/>
       <string v="oracle.adfdtinternal.model.ide.settings.ADFMSettings/adfmContentSet"/>
+      <string v="oracle.tip.tools.ide.fabric.addin.SCAContentSetProvider/sca-content"/>
       <string v="oracle.bpm.fusion.repository.BPMProjectSettings/bpmProjectsProcessesContentSet"/>
-      <string v="oracle.toplink.workbench.addin/toplinkContentSet"/>
+      <string v="oracle.bpm.fusion.repository.BPMProjectSettings/bpmProjectsOrganizationContentSet"/>
    </list>
    <value n="defaultPackage" v="or03armsaccount"/>
+   <value n="Namespace" v="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSAccountBPEL"/>
    <hash n="oracle.ide.model.ResourcePaths">
       <hash n="resourcesContentSet">
          <list n="url-path"/>
@@ -81,6 +97,7 @@
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
          <string v="SOA"/>
+         <string v="XML"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
@@ -90,7 +107,6 @@
          <string v=".jpeg"/>
          <string v=".png"/>
          <string v=".properties"/>
-         <string v=".xml"/>
          <string v=".ejx"/>
          <string v=".xcfg"/>
          <string v=".cpx"/>
@@ -103,8 +119,6 @@
          <string v=".xlf"/>
          <string v=".xsl"/>
          <string v=".xsd"/>
-         <string v=".exm"/>
-         <string v=".xml"/>
       </list>
       <value n="internalEncoding" v="Cp1252"/>
       <list n="Javac.commandline.optionlist">
@@ -138,10 +152,6 @@
                      <hash n="filters">
                         <list n="rules">
                            <hash>
-                              <value n="pattern" v="SCA-INF/bpel"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
                               <value n="pattern" v=".migrated/jaxb_classes"/>
                               <value n="type" v="1"/>
                            </hash>
@@ -159,10 +169,6 @@
                            </hash>
                            <hash>
                               <value n="pattern" v=".designer"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="SCA-INF/file-layer-registry.xml"/>
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
@@ -276,8 +282,8 @@
       </list>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
-      <value n="j2eeWebAppName" v="defaultServicesApp-OR03-ARMSAccount-webapp"/>
-      <value n="j2eeWebContextRoot" v="defaultServicesApp-OR03-ARMSAccount-context-root"/>
+      <value n="j2eeWebAppName" v="OR03-ARMSAccount-OR03-ARMSAccount-webapp"/>
+      <value n="j2eeWebContextRoot" v="OR03-ARMSAccount-OR03-ARMSAccount-context-root"/>
    </hash>
    <hash n="oracle.jdeveloper.model.PathsConfiguration">
       <hash n="javaContentSet">
@@ -367,4 +373,8 @@
          </list>
       </hash>
    </hash>
+   <url n="PrepareAccountAck_bpelFileURL" path="PrepareAccountAck.bpel"/>
+   <value n="PrepareAccountAck_wsdl" v="PrepareAccountAck.wsdl"/>
+   <value n="ProcessName" v="ARMSAccountBPEL"/>
+   <value n="Template" v="BPEL_BASE_ON_WSDL"/>
 </jpr:project>

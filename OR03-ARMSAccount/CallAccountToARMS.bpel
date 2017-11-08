@@ -56,7 +56,11 @@
     <variable name="invokeAccountJMS_Produce_Message_InputVariable"
               messageType="ns3:Produce_Message_msg"/>
   </variables>
-
+  <faultHandlers>
+    <catchAll>
+      <terminate name="CallAccountToARMS"/>
+    </catchAll>
+  </faultHandlers>
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      ORCHESTRATION LOGIC                                               
@@ -73,7 +77,7 @@
         <bpelx:pattern>transformation</bpelx:pattern>
       </bpelx:annotation>
       <copy>
-        <from expression="ora:processXSLT('xsl/transformAccount.xsl',bpws:getVariableData('inputVariable','body'))"/>
+        <from expression="ora:doXSLTransformForDoc('xsl/transformAccount.xsl', $inputVariable.body)"/>
         <to variable="invokeAccountToARMS_process_InputVariable"
             part="payload"/>
       </copy>
@@ -88,7 +92,7 @@
         <bpelx:pattern>transformation</bpelx:pattern>
       </bpelx:annotation>
       <copy>
-        <from expression="ora:processXSLT('xsl/transformReplyJMS.xsl',bpws:getVariableData('invokeAccountToARMS_process_OutputVariable','payload'))"/>
+        <from expression="ora:doXSLTransformForDoc('xsl/transformReplyJMS.xsl', $invokeAccountToARMS_process_OutputVariable.payload)"/>
         <to variable="invokeAccountJMS_Produce_Message_InputVariable"
             part="body"/>
       </copy>

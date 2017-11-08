@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+   <service name="prepareaccountack_client" ui:wsdlLocation="PrepareAccountAck.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/ARIS_KPEI_PROJECT/OR03_ARMSAccount/PrepareAccountAck#wsdl.interface(PrepareAccountAck)"/>
+   </service>
+   <reference name="AccountToARMS.accounttoarms_client" ui:wsdlLocation="AccountToARMS.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS#wsdl.interface(AccountToARMS)"/>
+   </reference>
+</componentType>

@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<actions targetNamespace="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSAccountBPEL" xmlns="http://xmlns.oracle.com/bpel/sensor" xmlns:tns="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSAccountBPEL" xmlns:pc="http://xmlns.oracle.com/bpel/sensor">
+   <action name="1.Initialization" publishName="OracleBam" publishType="BAM" enabled="true" filter="">
+      <property name="bamTransform">bam/Initialization.xsl</property>
+      <property name="jcaFileName">bam/1.Initialization.jcabam</property>
+      <sensorName>1.Initialization</sensorName>
+   </action>
+   <action name="2.Enrichment" publishName="OracleBam" publishType="BAM" enabled="true" filter="">
+      <property name="bamTransform">bam/Enrichment.xsl</property>
+      <property name="jcaFileName">bam/2.Enrichment.jcabam</property>
+      <sensorName>2.Transformation</sensorName>
+   </action>
+   <action name="3.Sending-Local" publishName="OracleBam" publishType="BAM" enabled="true" filter="">
+      <property name="bamTransform">bam/Sending-Local.xsl</property>
+      <property name="jcaFileName">bam/3.Sending-Local.jcabam</property>
+      <sensorName>3.Sending-Local</sensorName>
+   </action>
+   <action name="4.Sending-RMS" publishName="OracleBam" publishType="BAM" enabled="true" filter="">
+      <property name="bamTransform">bam/Sending-RMS.xsl</property>
+      <property name="jcaFileName">bam/4.Sending-RMS.jcabam</property>
+      <sensorName>4.Sending-RMS</sensorName>
+   </action>
+   <action name="5.Sending-DRC" publishName="OracleBam" publishType="BAM" enabled="true" filter="">
+      <property name="bamTransform">bam/Sending-DRC.xsl</property>
+      <property name="jcaFileName">bam/5.Sending-DRC.jcabam</property>
+      <sensorName>5.Sending-DRC</sensorName>
+   </action>
+   <action name="6.Termination" publishName="OracleBam" publishType="BAM" enabled="true" filter="">
+      <property name="bamTransform">bam/Termination.xsl</property>
+      <property name="jcaFileName">bam/6.Termination.jcabam</property>
+      <sensorName>6.Termination</sensorName>
+   </action>
+</actions>

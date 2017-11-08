@@ -1,0 +1,48 @@
+<wsdl:definitions
+     name="AccountToARMS"
+     targetNamespace="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+     xmlns:ns2="http://kpei.co.id/MDwsReply.xsd"
+     xmlns:ns1="http://www.kpei.co.id/middleware"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:ns3="http://www.kpei.co.id/Transformation"
+     xmlns:client="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="AccountToARMS">
+        <plnk:role name="AccountToARMSProvider">
+            <plnk:portType name="client:AccountToARMS"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://kpei.co.id/MDwsReply.xsd"
+             xmlns:ns1="http://www.kpei.co.id/middleware" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+             xmlns:client="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns3="http://www.kpei.co.id/Transformation">
+            <import namespace="http://www.kpei.co.id/middleware" schemaLocation="xsd/ARMSAccount-request.xsd"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://kpei.co.id/MDwsReply.xsd"
+             xmlns:ns1="http://www.kpei.co.id/middleware" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+             xmlns:client="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns3="http://www.kpei.co.id/Transformation">
+            <import namespace="http://kpei.co.id/MDwsReply.xsd" schemaLocation="xsd/MDwsReply.xsd"/>
+        </schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://kpei.co.id/MDwsReply.xsd"
+             xmlns:ns1="http://www.kpei.co.id/middleware" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+             xmlns:ns3="http://www.kpei.co.id/Transformation" xmlns:client="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <xsd:import namespace="http://www.kpei.co.id/Transformation" schemaLocation="xsd/Transformation.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="AccountToARMSRequestMessage">
+        <wsdl:part name="payload" element="ns1:AccountToARMS"/>
+    </wsdl:message>
+    <wsdl:message name="AccountToARMSResponseMessage">
+        <wsdl:part name="payload" element="ns2:wsReply"/>
+    </wsdl:message>
+    <wsdl:portType name="AccountToARMS">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:AccountToARMSRequestMessage"/>
+            <wsdl:output message="client:AccountToARMSResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

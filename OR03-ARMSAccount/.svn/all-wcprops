@@ -1,0 +1,215 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount
+END
+messageMonitorServiceRef.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/messageMonitorServiceRef.wsdl
+END
+AccountToARMS.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/AccountToARMS.componentType
+END
+RuntimeFault.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/RuntimeFault.wsdl
+END
+OR03-ARMSAccount.jpr
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/OR03-ARMSAccount.jpr
+END
+ARMS-Account_db.jca
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMS-Account_db.jca
+END
+AccountResponseQueue_JMS.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountResponseQueue_JMS.wsdl
+END
+WriteToLocalDir_file.jca
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/WriteToLocalDir_file.jca
+END
+AccountToARMS_JMS.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountToARMS_JMS.wsdl
+END
+AccountToARMS.bpel
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/AccountToARMS.bpel
+END
+marketObservationBPEL.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/marketObservationBPEL.componentType
+END
+sensorAction.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/sensorAction.xml
+END
+AccountToARMSMediator.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountToARMSMediator.componentType
+END
+ARMSAccountBPEL_sensor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMSAccountBPEL_sensor.xml
+END
+ARMSAccountMediator.mplan
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMSAccountMediator.mplan
+END
+WriteToLocalDir.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/WriteToLocalDir.wsdl
+END
+ARMSAccountBPEL.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMSAccountBPEL.componentType
+END
+GE03-XMLUtilityRef.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/GE03-XMLUtilityRef.wsdl
+END
+ARMS_Account.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMS_Account.wsdl
+END
+OR03_ARMSAccountRef.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/OR03_ARMSAccountRef.wsdl
+END
+WriteToExternal1.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/WriteToExternal1.wsdl
+END
+AccountToARMS.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountToARMS.wsdl
+END
+OR03_ARMSAccount.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/OR03_ARMSAccount.wsdl
+END
+SensorActionData.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/SensorActionData.xsd
+END
+DataTradeBPEL.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/DataTradeBPEL.componentType
+END
+composite.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/composite.xml
+END
+ARMSAccountBPEL.bpel
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/ARMSAccountBPEL.bpel
+END
+ARMSAccountMediator.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMSAccountMediator.componentType
+END
+WriteToExternal.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/WriteToExternal.wsdl
+END
+ARMSAccountBPEL_sensorAction.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMSAccountBPEL_sensorAction.xml
+END
+sensor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/sensor.xml
+END
+AccountResponseQueue-JMS_jms.jca
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountResponseQueue-JMS_jms.jca
+END
+SensorActionSensorAction_1.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/SensorActionSensorAction_1.xsd
+END
+AccountToARMSMediator.mplan
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountToARMSMediator.mplan
+END
+ARMSOfflineCollateralBpel.componentType
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/ARMSOfflineCollateralBpel.componentType
+END
+AccountToARMS-JMS_jms.jca
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/AccountToARMS-JMS_jms.jca
+END

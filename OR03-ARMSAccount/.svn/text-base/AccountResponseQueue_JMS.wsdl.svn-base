@@ -1,0 +1,21 @@
+<?binding.jca AccountResponseQueue-JMS_jms.jca?>
+<wsdl:definitions name="AccountResponseQueue-JMS" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountResponseQueue_JMS" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountResponseQueue_JMS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:imp1="http://kpei.co.id/MDwsReply.xsd" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="Produce_Message_plt">
+        <plt:role name="Produce_Message_role">
+            <plt:portType name="tns:Produce_Message_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://kpei.co.id/MDwsReply.xsd" schemaLocation="xsd/MDwsReply.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="Produce_Message_msg">
+        <wsdl:part name="body" element="imp1:wsReply"/>
+    </wsdl:message>
+    <wsdl:portType name="Produce_Message_ptt">
+        <wsdl:operation name="Produce_Message">
+            <wsdl:input message="tns:Produce_Message_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

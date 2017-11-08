@@ -1,0 +1,21 @@
+<?binding.jca ARMS-Account_db.jca?>
+<wsdl:definitions name="ARMS-Account" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/OR03-ARMSAccount/OR03-ARMSAccount/ARMS_Account" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/ARMS-Account" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/OR03-ARMSAccount/OR03-ARMSAccount/ARMS_Account" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="ARMS_Account_plt">
+        <plt:role name="ARMS-Account_role">
+            <plt:portType name="tns:ARMS_Account_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ARMS-Account" schemaLocation="xsd/ARMS_Account.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ARMS-AccountInput_msg">
+        <wsdl:part name="ARMS-AccountInput_msg" element="db:ARMS-AccountInput"/>
+    </wsdl:message>
+    <wsdl:portType name="ARMS_Account_ptt">
+        <wsdl:operation name="ARMS-Account">
+            <wsdl:input message="tns:ARMS-AccountInput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

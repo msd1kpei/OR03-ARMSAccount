@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xs:schema xmlns="http://www.kpei.co.id/middleware" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.kpei.co.id/DataFeedNettedTradeRequest" xmlns:ns2="http://www.kpei.co.id/ARMSOfflineCollateralRequest" xmlns:ns3="http://www.kpei.co.id/RMOLNetPositionRequest" targetNamespace="http://www.kpei.co.id/middleware" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+<xs:schema xmlns="http://www.kpei.co.id/schema/Account.001" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.kpei.co.id/DataFeedNettedTradeRequest" xmlns:ns2="http://www.kpei.co.id/ARMSOfflineCollateralRequest" xmlns:ns3="http://www.kpei.co.id/RMOLNetPositionRequest" targetNamespace="http://www.kpei.co.id/schema/Account.001" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xml="http://www.w3.org/XML/1998/namespace">
    <xs:element name="AccountInsert">
       <xs:annotation>
          <xs:documentation>ARMS Member delete inbound</xs:documentation>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <action name="DBSensorAction" enabled="true" publishName="" publishType="BpelReportsSchema" filter="" publishTarget="">
+        <sensorName>Input ID/ Filename JMS</sensorName>
+        <sensorName>Input ID/ Filename ARMS Insert</sensorName>
+        <sensorName>Input ID/ Filename to ARMS Insert</sensorName>
+    </action>
+</actions>

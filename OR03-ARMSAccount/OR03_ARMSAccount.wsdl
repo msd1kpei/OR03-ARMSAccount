@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<wsdl:definitions name="OR03_ARMSAccount" targetNamespace="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount" xmlns:ns2="http://www.kpei.co.id/Transformation" xmlns:ns1="http://schemas.oracle.com/bpel/extension" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:inp1="http://www.kpei.co.id/middleware" xmlns:tns="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount" xmlns:out1="http://kpei.co.id/MDwsReply.xsd">
+<wsdl:definitions name="OR03_ARMSAccount" targetNamespace="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount" xmlns:ns2="http://www.kpei.co.id/Transformation" xmlns:ns1="http://schemas.oracle.com/bpel/extension" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:inp1="http://www.kpei.co.id/schema/Account.001" xmlns:tns="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount" xmlns:out1="http://kpei.co.id/MDwsReply.xsd">
    <wsdl:import namespace="http://schemas.oracle.com/bpel/extension" location="RuntimeFault.wsdl"/>
    <wsdl:types>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
-         <import namespace="http://www.kpei.co.id/middleware" schemaLocation="xsd/ARMSAccount-request.xsd"/>
+         <import namespace="http://www.kpei.co.id/schema/Account.001" schemaLocation="xsd/ARMSAccount-request.xsd"/>
       </schema>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
          <import namespace="http://kpei.co.id/MDwsReply.xsd" schemaLocation="xsd/MDwsReply.xsd"/>

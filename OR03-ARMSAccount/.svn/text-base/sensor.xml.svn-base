@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensors xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <sensor sensorName="Input ID/ Filename JMS" kind="service" target="undefined" filter="" xmlns:imp1="http://www.kpei.co.id/middleware">
+        <serviceConfig service="AccountToARMS-JMS" expression="$in.body/imp1:AccountToARMS/imp1:header/@id" operation="Consume_Message" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="Input ID/ Filename ARMS Insert" kind="service" target="undefined" filter="" xmlns:inp1="http://www.kpei.co.id/middleware">
+        <serviceConfig service="OR03-ARMSAccount" expression="$in.request/inp1:AccountInsert/inp1:header/@id" operation="AccountInsert" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="Input ID/ Filename to ARMS Insert" kind="service" target="undefined" filter="" xmlns:inp1="http://www.kpei.co.id/middleware">
+        <serviceConfig service="OR03-ARMSAccount" expression="$in.part/inp1:AccountToARMS/inp1:header/@id" operation="AccountToARMS" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+</sensors>

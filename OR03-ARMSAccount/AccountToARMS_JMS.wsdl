@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<wsdl:definitions name="AccountToARMS-JMS" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountToARMS_JMS" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountToARMS_JMS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:imp1="http://www.kpei.co.id/middleware" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+<wsdl:definitions name="AccountToARMS-JMS" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountToARMS_JMS" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/OR03-ARMSAccount/OR03-ARMSAccount/AccountToARMS_JMS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:imp1="http://www.kpei.co.id/schema/Account.001" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
    <plt:partnerLinkType name="Consume_Message_plt">
       <plt:role name="Consume_Message_role">
          <plt:portType name="tns:Consume_Message_ptt"/>
@@ -7,7 +7,7 @@
    </plt:partnerLinkType>
    <wsdl:types>
       <schema xmlns="http://www.w3.org/2001/XMLSchema">
-         <import namespace="http://www.kpei.co.id/middleware" schemaLocation="xsd/ARMSAccount-request.xsd"/>
+         <import namespace="http://www.kpei.co.id/schema/Account.001" schemaLocation="xsd/ARMSAccount-request.xsd"/>
       </schema>
    </wsdl:types>
    <wsdl:message name="Consume_Message_msg">

@@ -26,7 +26,7 @@
          xmlns:ns4="http://schemas.oracle.com/xpath/extension/ldap"
          xmlns:ns9="http://kpei.co.id/MDwsReply.xsd"
          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-         xmlns:ns10="http://www.kpei.co.id/middleware"
+         xmlns:ns10="http://www.kpei.co.id/schema/Account.001"
          xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/ARMS-Account"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns:ns12="http://xmlns.oracle.com/ARIS_KPEI_PROJECT_jws/Transform/Transformation"
@@ -36,7 +36,9 @@
          xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
          xmlns:socket="http://www.oracle.com/XSL/Transform/java/oracle.tip.adapter.socket.ProtocolTranslator"
          xmlns:ns13="http://www.kpei.co.id/Transformation"
-         xmlns:ns14="http://xmlns.oracle.com/pcbpel/adapter/db/ARIS-KPEI-PROJECT/OR03-ARMSAccount/ARMSAccountDB">
+         xmlns:ns14="http://xmlns.oracle.com/pcbpel/adapter/db/ARIS-KPEI-PROJECT/OR03-ARMSAccount/ARMSAccountDB"
+         xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,32 +72,30 @@
     <variable name="Counter" type="xsd:integer"/>
     <variable name="totaleCLEARSAccount" type="xsd:integer"/>
     <variable name="invalidVar" messageType="bpelx:RuntimeFaultMessage"/>
-    <variable name="replyErrorValidation_process_OutputVariable"
+    <variable name="replyInvalidVariable"
               messageType="client:AccountToARMSResponseMessage"/>
-    <variable name="Transformation1" element="ns13:Transformations"/>
   </variables>
   <faultHandlers>
     <catch faultName="bpelx:invalidVariables" faultVariable="invalidVar">
       <sequence>
-        <assign name="Assign_1">
+        <assign name="AssignInvalidVariable">
           <copy>
             <from expression="xpath20:current-dateTime()"/>
-            <to variable="replyErrorValidation_process_OutputVariable"
-                part="payload" query="/ns9:wsReply/ns9:receiveDateTime"/>
+            <to variable="replyInvalidVariable" part="payload"
+                query="/ns9:wsReply/ns9:receiveDateTime"/>
           </copy>
           <copy>
-            <from expression="'ERROR'"/>
-            <to variable="replyErrorValidation_process_OutputVariable"
-                part="payload" query="/ns9:wsReply/ns9:status"/>
+            <from expression='"ERROR"'/>
+            <to variable="replyInvalidVariable" part="payload"
+                query="/ns9:wsReply/ns9:status"/>
           </copy>
           <copy>
-            <from expression="string(bpws:getVariableData('invalidVar','summary'))"/>
-            <to variable="replyErrorValidation_process_OutputVariable"
-                part="payload" query="/ns9:wsReply/ns9:description"/>
+            <from expression="concat(string(bpws:getVariableData('invalidVar','summary')), ora:getFaultAsString())"/>
+            <to variable="replyInvalidVariable" part="payload"
+                query="/ns9:wsReply/ns9:description"/>
           </copy>
         </assign>
-        <reply name="replyErrorValidation"
-               variable="replyErrorValidation_process_OutputVariable"
+        <reply name="replyInvalidVariable" variable="replyInvalidVariable"
                partnerLink="accounttoarms_client"
                portType="client:AccountToARMS" operation="process"/>
       </sequence>
@@ -126,7 +126,6 @@
     </assign>
     <scope name="processing">
       <variables>
-        <variable name="msg_eCLEARSAccount" element="ns10:e-CLEARSAccount"/>
         <variable name="insertARMSAccount_merge_InputVariable"
                   messageType="ns14:AccountCollection_msg"/>
       </variables>

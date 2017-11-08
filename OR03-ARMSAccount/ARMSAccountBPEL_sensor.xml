@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<sensors targetNamespace="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSAccountBPEL" xmlns="http://xmlns.oracle.com/bpel/sensor" xmlns:tns="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/ARMSAccountBPEL" xmlns:pc="http://xmlns.oracle.com/bpel/sensor" xmlns:ns10="http://www.kpei.co.id/middleware">
+   <sensor sensorName="1.Initialization" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="receiveInput">
+      <activityConfig evalTime="activation">
+         <variable outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema" target="$inputVariable/request/ns10:AccountInsert/ns10:header/@id"/>
+      </activityConfig>
+   </sensor>
+   <sensor sensorName="2.Transformation" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="Transform_1">
+      <activityConfig evalTime="completion"/>
+   </sensor>
+   <sensor sensorName="3.Sending-Local" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="InvokeWriteToLocalDir">
+      <activityConfig evalTime="completion"/>
+   </sensor>
+   <sensor sensorName="4.Sending-RMS" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="Invoke">
+      <activityConfig evalTime="completion"/>
+   </sensor>
+   <sensor sensorName="5.Sending-DRC" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="WriteDRC">
+      <activityConfig evalTime="completion"/>
+   </sensor>
+   <sensor sensorName="6.Termination" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="replyOutput">
+      <activityConfig evalTime="completion"/>
+   </sensor>
+</sensors>

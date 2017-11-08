@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<AccountToARMS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kpei.co.id/middleware file:/D:/00.%20PROJECTS/MWI/OR03-ARMSAccount/xsd/ARMSAccount-request.xsd" xmlns="http://www.kpei.co.id/middleware">
+<AccountToARMS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kpei.co.id/schema/Account.001 file:/D:/00.%20PROJECTS/MWI/OR03-ARMSAccount/xsd/ARMSAccount-request.xsd" xmlns="http://www.kpei.co.id/schema/Account.001">
    <header id="id1">
       <asAt>2011-07-27T11:14:10.076</asAt>
       <source>source2</source>

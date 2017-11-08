@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd
+END
+ARMSAccount-request.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/ARMSAccount-request.xsd
+END
+ARMS_Account_table.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/ARMS_Account_table.xsd
+END
+MDwsReply.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/MDwsReply.xsd
+END
+Transformation.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/Transformation.xsd
+END
+Account.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/Account.xsd
+END
+ARMS_Account.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/ARMS_Account.xsd
+END
+Account_ARMS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsd/Account_ARMS.xsd
+END

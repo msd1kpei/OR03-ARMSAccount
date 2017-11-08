@@ -1,0 +1,12 @@
+<adapter-config name="ARMS-Account" adapter="Database Adapter" wsdlLocation="ARMS_Account.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/ds_arms" UIConnectionName="ARMS" adapterRef=""/>
+  <endpoint-interaction portType="ARMS_Account_ptt" operation="ARMS-Account">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="insert into dbo.account(ACCOUNT_ID, ACCOUNT_TYPE, DESCRIPTION, MEMBER_ID, INSERT_DATE, INSERT_USER)values (#ACCOUNT_ID,#ACCOUNT_TYPE,#DESCRIPTION,#MEMBER_ID,DEFAULT,'KPEIMID')"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+  </endpoint-interaction>
+
+</adapter-config>

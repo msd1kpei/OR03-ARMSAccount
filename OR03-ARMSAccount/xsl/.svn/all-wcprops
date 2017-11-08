@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl
+END
+wsReply_To_wsReply_2.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/wsReply_To_wsReply_2.xsl
+END
+Transformation_1.bak
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/Transformation_1.bak
+END
+wsReply_To_wsReply_3.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/wsReply_To_wsReply_3.xsl
+END
+wsReply_To_wsReply_4.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/wsReply_To_wsReply_4.xsl
+END
+AccountToARMS_To_process.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountToARMS_To_process.xsl
+END
+invokeTransformation.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/xsl/invokeTransformation.xsl
+END
+AccountInsert_To_AccountInsert.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountInsert_To_AccountInsert.xsl
+END
+AccountInsert_To_AccountToARMS.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountInsert_To_AccountToARMS.xsl
+END
+AccountToARMS_To_AccountToARMS.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountToARMS_To_AccountToARMS.xsl
+END
+Transformation_1.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/Transformation_1.xsl
+END
+Transformation_2.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/Transformation_2.xsl
+END
+Transformation_3.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/Transformation_3.xsl
+END
+Transformation_4.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/Transformation_4.xsl
+END
+assignTo_msg_eCLEARSAccount1.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/assignTo_msg_eCLEARSAccount1.xsl
+END
+AccountToARMS_To_wsReply_2.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountToARMS_To_wsReply_2.xsl
+END
+AccountToARMSCreateInsert.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountToARMSCreateInsert.xsl
+END
+wsReply_To_wsReply.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/wsReply_To_wsReply.xsl
+END
+invokeTransformation1.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/invokeTransformation1.xsl
+END
+AccountInsert_To_AccountToARMS_2.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountInsert_To_AccountToARMS_2.xsl
+END
+assignTo_msg_eCLEARSAccount.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/MII/!svn/ver/86/trunk/MWI/OR03-ARMSAccount/xsl/assignTo_msg_eCLEARSAccount.xsl
+END
+AccountToARMS_To_wsReply.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/xsl/AccountToARMS_To_wsReply.xsl
+END

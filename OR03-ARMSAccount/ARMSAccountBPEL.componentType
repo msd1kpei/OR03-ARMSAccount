@@ -3,9 +3,6 @@
    <service name="armsaccountbpel_client" ui:wsdlLocation="OR03_ARMSAccountRef.wsdl">
       <interface.wsdl interface="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount#wsdl.interface(execute_ptt)"/>
    </service>
-   <reference name="GE01-MessageMonitor" ui:wsdlLocation="messageMonitorServiceRef.wsdl">
-      <interface.wsdl interface="http://oracle.com/sca/soapservice/KPEI-MIDDLEWARE/Ge01-messageMonitor/messageMonitorService#wsdl.interface(messageMonitor)"/>
-   </reference>
    <reference name="GE03-XMLUtility" ui:wsdlLocation="GE03-XMLUtilityRef.wsdl">
       <interface.wsdl interface="http://oracle.com/sca/soapservice/kpei/GE03-XMLUtility/GE03_XMLUtility#wsdl.interface(GE03-XMLUtility)"/>
    </reference>

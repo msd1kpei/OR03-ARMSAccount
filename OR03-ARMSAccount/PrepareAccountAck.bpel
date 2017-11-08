@@ -1,0 +1,135 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Sep 19 19:35:23 ICT 2017
+  Author:  AminMu
+  Type: BPEL 1.1 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="PrepareAccountAck"
+               targetNamespace="http://xmlns.oracle.com/ARIS_KPEI_PROJECT/OR03_ARMSAccount/PrepareAccountAck"
+               xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+               xmlns:client="http://xmlns.oracle.com/ARIS_KPEI_PROJECT/OR03_ARMSAccount/PrepareAccountAck"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:ns1="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns2="http://www.kpei.co.id/schema/Account.001"
+         xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns3="http://www.kpei.co.id/ResponseMessage"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns4="http://kpei.co.id/MDwsReply.xsd">
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="prepareaccountack_client" partnerLinkType="client:PrepareAccountAck" myRole="PrepareAccountAckProvider"/>
+    <partnerLink name="AccountToARMS.accounttoarms_client"
+                 partnerLinkType="ns1:AccountToARMS"
+                 partnerRole="AccountToARMSProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:PrepareAccountAckRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:PrepareAccountAckResponseMessage"/>
+    <variable name="Invoke_AccountProcess_process_InputVariable"
+              messageType="ns1:AccountToARMSRequestMessage"/>
+    <variable name="Invoke_AccountProcess_process_OutputVariable"
+              messageType="ns1:AccountToARMSResponseMessage"/>
+    <variable name="headerId" type="xsd:string"/>
+    <variable name="source" type="xsd:string"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in PrepareAccountAck.wsdl) -->
+    <receive name="receiveInput" partnerLink="prepareaccountack_client" portType="client:PrepareAccountAck" operation="process" variable="inputVariable" createInstance="yes"/>
+
+    <!-- Generate reply to synchronous request -->
+    <assign name="Assign_PrepareAck">
+      <copy>
+        <from variable="inputVariable" part="payload"
+              query="/ns2:AccountToARMS/ns2:header/@id"/>
+        <to variable="headerId"/>
+      </copy>
+      <copy>
+        <from variable="inputVariable" part="payload"
+              query="/ns2:AccountToARMS/ns2:header/ns2:source"/>
+        <to variable="source"/>
+      </copy>
+    </assign>
+    <assign name="Assign_InvokeAccountProcess_Input">
+      <copy>
+        <from variable="inputVariable" part="payload"
+              query="/ns2:AccountToARMS"/>
+        <to variable="Invoke_AccountProcess_process_InputVariable"
+            part="payload" query="/ns2:AccountToARMS"/>
+      </copy>
+    </assign>
+    <invoke name="Invoke_AccountProcess" bpelx:invokeAsDetail="no"
+            inputVariable="Invoke_AccountProcess_process_InputVariable"
+            outputVariable="Invoke_AccountProcess_process_OutputVariable"
+            partnerLink="AccountToARMS.accounttoarms_client"
+            portType="ns1:AccountToARMS" operation="process"/>
+    <assign name="Assign_Reply">
+      <copy>
+        <from variable="headerId"/>
+        <to variable="outputVariable" part="payload"
+            query="/ns3:ResponseMessage/ns3:reffMessage"/>
+      </copy>
+      <copy>
+        <from variable="source"/>
+        <to variable="outputVariable" part="payload"
+            query="/ns3:ResponseMessage/ns3:sourceMessage"/>
+      </copy>
+      <copy>
+        <from variable="Invoke_AccountProcess_process_OutputVariable"
+              part="payload" query="/ns4:wsReply/ns4:receiveDateTime"/>
+        <to variable="outputVariable" part="payload"
+            query="/ns3:ResponseMessage/ns3:receiveDateTime"/>
+      </copy>
+      <copy>
+        <from variable="Invoke_AccountProcess_process_OutputVariable"
+              part="payload" query="/ns4:wsReply/ns4:status"/>
+        <to variable="outputVariable" part="payload"
+            query="/ns3:ResponseMessage/ns3:status"/>
+      </copy>
+      <copy>
+        <from variable="Invoke_AccountProcess_process_OutputVariable"
+              part="payload" query="/ns4:wsReply/ns4:description"/>
+        <to variable="outputVariable" part="payload"
+            query="/ns3:ResponseMessage/ns3:description"/>
+      </copy>
+    </assign>
+    <reply name="replyOutput" partnerLink="prepareaccountack_client" portType="client:PrepareAccountAck" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam
+END
+Enrichment.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/Enrichment.xsl
+END
+1.Initialization.jcabam
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/1.Initialization.jcabam
+END
+Sending-DRC.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/Sending-DRC.xsl
+END
+4.Sending-RMS.jcabam
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/4.Sending-RMS.jcabam
+END
+Sending-Local.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/Sending-Local.xsl
+END
+2.Enrichment.jcabam
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/2.Enrichment.jcabam
+END
+6.Termination.jcabam
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/6.Termination.jcabam
+END
+Sending-RMS.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/Sending-RMS.xsl
+END
+3.Sending-Local.jcabam
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/3.Sending-Local.jcabam
+END
+5.Sending-DRC.jcabam
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/5.Sending-DRC.jcabam
+END
+Initialization.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/Initialization.xsl
+END
+Termination.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/MII/!svn/ver/3/trunk/MWI/OR03-ARMSAccount/bam/Termination.xsl
+END

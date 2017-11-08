@@ -24,7 +24,7 @@
          xmlns:ns9="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
          xmlns:ns7="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
          xmlns:ns5="http://schemas.oracle.com/xpath/extension/ldap"
-         xmlns:ns10="http://www.kpei.co.id/middleware"
+         xmlns:ns10="http://www.kpei.co.id/schema/Account.001"
          xmlns:ns11="http://kpei.co.id/MDwsReply.xsd"
          xmlns:xpath20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -60,8 +60,6 @@
       with the client role are automatically set using WS-Addressing.
     -->
     <partnerLink name="armsaccountbpel_client" partnerLinkType="ns1:ARMSAccountBPEL" myRole="execute_ptt"/>
-    <partnerLink name="GE01-MessageMonitor" partnerRole="messageMonitor"
-                 partnerLinkType="ns2:GE01-MessageMonitor"/>
     <partnerLink name="GE03-XMLUtility" partnerRole="GE03-XMLUtility"
                  partnerLinkType="ns12:GE03-XMLUtility"/>
     <partnerLink name="WriteToExternal" partnerRole="GE02-FileUtility"
@@ -204,49 +202,13 @@
         <to variable="FileName"/>
       </copy>
     </assign>
-    <sequence name="LoggingInbound">
-      <assign name="AssignLoggingInbound">
-        <copy>
-          <from expression="concat('messsageName=OR01-ARMS Account|CompositeInstanceId=',ora:getCompositeInstanceId(),'|ComponentName=',ora:getComponentName(),'|','Description=Message Account telah berhasil diproses.')"/>
-          <to variable="Invoke_sendInboundMonitor_InputVariable" part="request"
-              query="/ns3:inboundMonitorRequest/ns3:inboundMonitor/ns3:description"/>
-        </copy>
-        <copy>
-          <from expression="'SUCCESS'"/>
-          <to variable="Invoke_sendInboundMonitor_InputVariable" part="request"
-              query="/ns3:inboundMonitorRequest/ns3:inboundMonitor/ns3:status"/>
-        </copy>
-        <copy>
-          <from expression="ora:countNodes('inputVariable','request','/ns10:AccountInsert/ns10:body/ns10:AccountType')"/>
-          <to variable="Invoke_sendInboundMonitor_InputVariable" part="request"
-              query="/ns3:inboundMonitorRequest/ns3:inboundMonitor/ns3:rowCount"/>
-        </copy>
-        <copy>
-          <from variable="inputVariable" part="request"
-                query="/ns10:AccountInsert/ns10:header/@id"/>
-          <to variable="Invoke_sendInboundMonitor_InputVariable" part="request"
-              query="/ns3:inboundMonitorRequest/ns3:inboundMonitor/ns3:Filename"/>
-        </copy>
-        <copy>
-          <from variable="inputVariable" part="request"
-                query="/ns10:AccountInsert/ns10:header/ns10:asAt"/>
-          <to variable="Invoke_sendInboundMonitor_InputVariable" part="request"
-              query="/ns3:inboundMonitorRequest/ns3:inboundMonitor/ns3:ReceiveDate"/>
-        </copy>
-      </assign>
-      <assign name="assignDateZ">
-        <copy>
-          <from expression="concat(xpath20:format-dateTime(string(bpws:getVariableData('inputVariable','request','/ns10:AccountInsert/ns10:header/ns10:asAt')),'[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]'),'Z')"/>
-          <to variable="inputVariable" part="request"
-              query="/ns10:AccountInsert/ns10:header/ns10:asAt"/>
-        </copy>
-      </assign>
-      <invoke name="InvokeLoggingInbound"
-              inputVariable="Invoke_sendInboundMonitor_InputVariable"
-              outputVariable="Invoke_sendInboundMonitor_OutputVariable"
-              partnerLink="GE01-MessageMonitor" portType="ns2:messageMonitor"
-              operation="sendInboundMonitor"/>
-    </sequence>
+    <assign name="assignDateZ">
+      <copy>
+        <from expression="concat(xpath20:format-dateTime(string(bpws:getVariableData('inputVariable','request','/ns10:AccountInsert/ns10:header/ns10:asAt')),'[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]'),'Z')"/>
+        <to variable="inputVariable" part="request"
+            query="/ns10:AccountInsert/ns10:header/ns10:asAt"/>
+      </copy>
+    </assign>
     <sequence name="getXMLData">
       <assign name="AssigngetXMLData">
         <copy>
@@ -452,57 +414,6 @@
               outputVariable="WriteWhatIf_copyFile_OutputVariable"
               partnerLink="WriteToExternal" portType="ns15:GE02-FileUtility"
               operation="copyFile"/>
-    </sequence>
-    <sequence name="outboundMonitor">
-      <assign name="assignOutboungMon">
-        <copy>
-          <from expression="xpath20:current-dateTime()"/>
-          <to variable="Invoke_sendOutboundMonitor_InputVariable" part="request"
-              query="/ns3:outboundMonitorRequest/ns3:outboundMonitor/ns3:ReceiveDate"/>
-        </copy>
-        <copy>
-          <from variable="FileName"/>
-          <to variable="Invoke_sendOutboundMonitor_InputVariable" part="request"
-              query="/ns3:outboundMonitorRequest/ns3:outboundMonitor/ns3:Filename"/>
-        </copy>
-        <copy>
-          <from expression="ora:countNodes('inputVariable','request','/ns10:AccountInsert/ns10:body/ns10:AccountType')"/>
-          <to variable="Invoke_sendOutboundMonitor_InputVariable" part="request"
-              query="/ns3:outboundMonitorRequest/ns3:outboundMonitor/ns3:rowCount"/>
-        </copy>
-        <copy>
-          <from expression="'SUCCESS'"/>
-          <to variable="Invoke_sendOutboundMonitor_InputVariable" part="request"
-              query="/ns3:outboundMonitorRequest/ns3:outboundMonitor/ns3:status"/>
-        </copy>
-        <copy>
-          <from expression="'sendOutboundMonitor telah berhasil diproses.'"/>
-          <to variable="Invoke_sendOutboundMonitor_InputVariable" part="request"
-              query="/ns3:outboundMonitorRequest/ns3:outboundMonitor/ns3:description"/>
-        </copy>
-      </assign>
-      <invoke name="Invoke"
-              inputVariable="Invoke_sendOutboundMonitor_InputVariable"
-              outputVariable="Invoke_sendOutboundMonitor_OutputVariable"
-              partnerLink="GE01-MessageMonitor" portType="ns2:messageMonitor"
-              operation="sendOutboundMonitor"/>
-    </sequence>
-    <sequence name="RelationMonitor">
-      <assign name="transformToRelation">
-        <bpelx:annotation>
-          <bpelx:pattern>transformation</bpelx:pattern>
-        </bpelx:annotation>
-        <copy>
-          <from expression="ora:doXSLTransformForDoc('xsl/Transformation_2.xsl',bpws:getVariableData('Invoke_sendInboundMonitor_OutputVariable','reply'),'Invoke_sendOutboundMonitor_OutputVariable.reply',bpws:getVariableData('Invoke_sendOutboundMonitor_OutputVariable','reply'))"/>
-          <to variable="Invoke_sendRelationMonitor_InputVariable"
-              part="request"/>
-        </copy>
-      </assign>
-      <invoke name="Invoke"
-              inputVariable="Invoke_sendRelationMonitor_InputVariable"
-              outputVariable="Invoke_sendRelationMonitor_OutputVariable"
-              partnerLink="GE01-MessageMonitor" portType="ns2:messageMonitor"
-              operation="sendRelationMonitor"/>
     </sequence>
     <assign name="AssignSuccess">
       <copy>
