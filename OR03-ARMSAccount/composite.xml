@@ -23,12 +23,39 @@
    </service>
    <property name="auditLevel" many="false">Development</property>
    <property name="validateSchema" type="xs:boolean" many="false">false</property>
+   <property name="originalProductVersion" type="xs:string" many="false">11.0.0.0.0</property>
+   <property name="productVersion" type="xs:string" many="false">12.2.1.3.0.170820</property>
+   <property name="compositeID" type="xs:string" many="false">8322f05e-d2f6-41dd-845b-fd13d1df2670</property>
    <component name="AccountToARMS">
       <implementation.bpel src="AccountToARMS.bpel"/>
+      <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="accounttoarms_client" ui:wsdlLocation="AccountToARMS.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS#wsdl.interface(AccountToARMS)"/>
+         </service>
+         <reference name="ARMSAccountDB" ui:wsdlLocation="ARMSAccountDB.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ARIS-KPEI-PROJECT/OR03-ARMSAccount/ARMSAccountDB#wsdl.interface(ARMSAccountDB_ptt)"/>
+         </reference>
+      </componentType>
       <business-events/>
    </component>
    <component name="ARMSAccountBPEL">
       <implementation.bpel src="ARMSAccountBPEL.bpel"/>
+      <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="armsaccountbpel_client" ui:wsdlLocation="OR03_ARMSAccountRef.wsdl">
+            <interface.wsdl interface="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount#wsdl.interface(execute_ptt)"/>
+         </service>
+         <reference name="GE03-XMLUtility" ui:wsdlLocation="GE03-XMLUtilityRef.wsdl">
+            <interface.wsdl interface="http://oracle.com/sca/soapservice/kpei/GE03-XMLUtility/GE03_XMLUtility#wsdl.interface(GE03-XMLUtility)"/>
+         </reference>
+         <reference name="WriteToExternal" ui:wsdlLocation="WriteToExternal1.wsdl">
+            <interface.wsdl interface="http://www.kpei.co.id/GE02-FileUtility#wsdl.interface(GE02-FileUtility)"/>
+         </reference>
+         <reference name="WriteToLocalDir" ui:wsdlLocation="WriteToLocalDir.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/file/OR03-ARMSAccount/OR03-ARMSAccount/WriteToLocalDir#wsdl.interface(Write_ptt)"/>
+         </reference>
+      </componentType>
       <property name="configuration.sensorLocation" type="xs:string" many="false">ARMSAccountBPEL_sensor.xml</property>
       <property name="configuration.monitorLocation" type="xs:string" many="false">ARMSAccountBPEL.monitor</property>
       <property name="configuration.sensorActionLocation" type="xs:string" many="false">ARMSAccountBPEL_sensorAction.xml</property>
@@ -36,14 +63,47 @@
    </component>
    <component name="ARMSAccountMediator">
       <implementation.mediator src="ARMSAccountMediator.mplan"/>
+      <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="ARMSAccountMediator" ui:wsdlLocation="OR03_ARMSAccount.wsdl">
+            <interface.wsdl interface="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount#wsdl.interface(execute_ptt)"/>
+         </service>
+         <reference name="ARMSAccountBPEL.armsaccountbpel_client" ui:wsdlLocation="OR03_ARMSAccountRef.wsdl">
+            <interface.wsdl interface="http://oracle.com/sca/soapservice/OR03-ARMSAccount/OR03-ARMSAccount/OR03_ARMSAccount#wsdl.interface(execute_ptt)"/>
+         </reference>
+         <reference name="AccountToARMS.accounttoarms_client" ui:wsdlLocation="AccountToARMS.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS#wsdl.interface(AccountToARMS)"/>
+         </reference>
+      </componentType>
       <property name="isResequencing" many="false" override="may">false</property>
       <business-events/>
    </component>
    <component name="RouteAccountQueue">
       <implementation.mediator src="RouteAccountQueue.mplan"/>
+      <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="RouteAccountQueue" ui:wsdlLocation="Inbound_AccountQueue.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/ARIS-KPEI-PROJECT/OR03-ARMSAccount/Inbound_AccountQueue#wsdl.interface(Consume_Message_ptt)"/>
+         </service>
+         <reference name="PrepareAccountAck.prepareaccountack_client" ui:wsdlLocation="PrepareAccountAck.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/ARIS_KPEI_PROJECT/OR03_ARMSAccount/PrepareAccountAck#wsdl.interface(PrepareAccountAck)"/>
+         </reference>
+         <reference name="ResponseMessageSender" ui:wsdlLocation="Outbound.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/MW-OSB/sendResponeMsg/sendResponsemsg#wsdl.interface(sendResponsemsg_ptt)"/>
+         </reference>
+      </componentType>
    </component>
    <component name="PrepareAccountAck" version="1.1">
       <implementation.bpel src="PrepareAccountAck.bpel"/>
+      <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="prepareaccountack_client" ui:wsdlLocation="PrepareAccountAck.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/ARIS_KPEI_PROJECT/OR03_ARMSAccount/PrepareAccountAck#wsdl.interface(PrepareAccountAck)"/>
+         </service>
+         <reference name="AccountToARMS.accounttoarms_client" ui:wsdlLocation="AccountToARMS.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/OR03_ARMSAccount_jws/OR03_ARMSAccount/AccountToARMS#wsdl.interface(AccountToARMS)"/>
+         </reference>
+      </componentType>
    </component>
    <reference name="WriteToLocalDir">
       <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/file/OR03-ARMSAccount/OR03-ARMSAccount/WriteToLocalDir#wsdl.interface(Write_ptt)"/>

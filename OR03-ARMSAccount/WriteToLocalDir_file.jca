@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<adapter-config name="WriteToLocalDir" adapter="File Adapter" wsdlLocation="WriteToLocalDir.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+<?xml version="1.0" encoding="UTF-8"?>
+<adapter-config name="WriteToLocalDir" adapter="file" wsdlLocation="WriteToLocalDir.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
    <connection-factory location="eis/HAFileAdapter" adapterRef=""/>
    <endpoint-interaction portType="Write_ptt" operation="Write">
       <interaction-spec className="oracle.tip.adapter.file.outbound.FileInteractionSpec">

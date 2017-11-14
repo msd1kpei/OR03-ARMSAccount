@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<object-persistence version="Eclipse Persistence Services - 2.0.2.v20100323-r6872" xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.5.v20170607-b3d05bd">
    <name>ARMSAccountDB-OR</name>
    <class-mapping-descriptors>
       <class-mapping-descriptor xsi:type="object-relational-class-mapping-descriptor">
@@ -8,8 +8,8 @@
          <primary-key>
             <field table="account" name="AccountID" xsi:type="column"/>
          </primary-key>
-         <events xsi:type="event-policy"/>
-         <querying xsi:type="query-policy">
+         <events/>
+         <querying>
             <queries>
                <query name="ARMSAccountDBSelect" xsi:type="read-all-query">
                   <reference-class>ARMSAccountDB.Account</reference-class>
@@ -87,7 +87,6 @@
    </class-mapping-descriptors>
    <login xsi:type="database-login">
       <platform-class>org.eclipse.persistence.platform.database.SQLServerPlatform</platform-class>
-      <user-name/>
-      <connection-url/>
+      <connection-url></connection-url>
    </login>
 </object-persistence>
